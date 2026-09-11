@@ -2,6 +2,8 @@ import useCollection from './useCollection'
 import { CollectionPage } from './Activities'
 import { EmptyState, ErrorState, LoadingState } from './CollectionState'
 
+// API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/
+
 function Leaderboard() {
   const { data, loading, error } = useCollection('leaderboard')
   return <CollectionPage title="Leaderboard" eyebrow="THE RACE IS ON" description="A little friendly pressure goes a long way." loading={false} error={null} empty={false}>

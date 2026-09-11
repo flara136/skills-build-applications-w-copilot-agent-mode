@@ -1,6 +1,8 @@
 import useCollection from './useCollection'
 import { EmptyState, ErrorState, LoadingState } from './CollectionState'
 
+// API endpoint: https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/
+
 export function CollectionPage({ title, eyebrow, description, loading, error, empty, children }) {
   return <section className="collection-page"><div className="page-heading"><div><p className="eyebrow">{eyebrow}</p><h1>{title}</h1><p className="lede">{description}</p></div><span className="record-badge">LIVE DATA</span></div>{loading ? <LoadingState /> : error ? <ErrorState error={error} /> : empty ? <EmptyState label={title.toLowerCase()} /> : children}</section>
 }
