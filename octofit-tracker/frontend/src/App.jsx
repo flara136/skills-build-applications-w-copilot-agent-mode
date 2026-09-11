@@ -1,121 +1,57 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
+import { NavLink, Route, Routes } from 'react-router-dom'
+import Activities from './components/Activities'
+import Leaderboard from './components/Leaderboard'
+import Teams from './components/Teams'
+import Users from './components/Users'
+import Workouts from './components/Workouts'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+const navigation = [
+  { label: 'Overview', path: '/', icon: '01' },
+  { label: 'Activities', path: '/activities', icon: '02' },
+  { label: 'Leaderboard', path: '/leaderboard', icon: '03' },
+  { label: 'Teams', path: '/teams', icon: '04' },
+  { label: 'Members', path: '/users', icon: '05' },
+  { label: 'Workouts', path: '/workouts', icon: '06' },
+]
 
+function Overview() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <section className="overview">
+      <p className="eyebrow">SEPTEMBER 2026 / TEAM PULSE</p>
+      <h1>Make your next<br /><em>move count.</em></h1>
+      <p className="lede">A shared space for showing up, tracking momentum, and giving your team a little extra lift.</p>
+      <div className="overview-grid">
+        <NavLink to="/activities" className="feature-panel feature-panel--dark"><span className="panel-index">01</span><strong>Log an activity</strong><span>Turn today's effort into tomorrow's momentum <b>+</b></span></NavLink>
+        <NavLink to="/leaderboard" className="feature-panel feature-panel--lime"><span className="panel-index">02</span><strong>See the leaderboard</strong><span>Find out who's setting the pace <b>+</b></span></NavLink>
+      </div>
+    </section>
+  )
+}
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+function App() {
+  return (
+    <div className="app-shell">
+      <aside className="sidebar">
+        <NavLink to="/" className="brand" aria-label="Octofit home"><span className="brand-mark">O</span><span>octofit<span className="brand-dot">.</span></span></NavLink>
+        <div className="sidebar-label">Workspace</div>
+        <nav className="main-nav" aria-label="Main navigation">
+          {navigation.map((item) => <NavLink key={item.path} to={item.path} end={item.path === '/'} className="nav-link"><span className="nav-index">{item.icon}</span>{item.label}</NavLink>)}
+        </nav>
+        <div className="sidebar-footer"><span className="status-dot" />API connected</div>
+      </aside>
+      <main className="main-content">
+        <header className="topbar"><span>OCTOFIT TRACKER</span><span className="topbar-date">THU / 11 SEP 2026</span></header>
+        <Routes>
+          <Route path="/" element={<Overview />} />
+          <Route path="/activities" element={<Activities />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/teams" element={<Teams />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/workouts" element={<Workouts />} />
+        </Routes>
+      </main>
+    </div>
   )
 }
 
