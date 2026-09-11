@@ -11,6 +11,8 @@ const apiBaseUrl = codespaceName
   ? `https://${codespaceName}-8000.app.github.dev`
   : `http://localhost:${port}`;
 
+export { app, apiBaseUrl };
+
 app.use(cors());
 app.use(express.json());
 
@@ -33,7 +35,3 @@ app.get('/api/teams/', respondWithCollection('teams', Team));
 app.get('/api/activities/', respondWithCollection('activities', Activity));
 app.get('/api/leaderboard/', respondWithCollection('leaderboard', Leaderboard));
 app.get('/api/workouts/', respondWithCollection('workouts', Workout));
-
-app.listen(port, () => {
-  console.log(`Octofit Tracker API listening at ${apiBaseUrl}`);
-});

@@ -1,14 +1,5 @@
-import express from 'express'
+import { app, apiBaseUrl } from './server';
 
-const app = express()
-const port = 8000
-
-app.use(express.json())
-
-app.get('/api/health', (_request, response) => {
-  response.json({ status: 'ok' })
-})
-
-app.listen(port, () => {
-  console.log(`OctoFit API listening on port ${port}`)
-})
+app.listen(8000, () => {
+  console.log(`OctoFit API listening at ${apiBaseUrl}`);
+});

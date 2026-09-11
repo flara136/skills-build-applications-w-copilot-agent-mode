@@ -1,6 +1,6 @@
 ---
 mode: 'agent'
-agent: agent
+agent: 'agent'
 description: 'Configure MongoDB and seed octofit_db for the Octofit multi-tier application'
 ---
 

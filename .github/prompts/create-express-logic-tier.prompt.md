@@ -1,6 +1,6 @@
 ---
 mode: 'agent'
-agent: agent
+agent: 'agent'
 description: 'Create the Node.js logic tier for the Octofit multi-tier application'
 ---
 
